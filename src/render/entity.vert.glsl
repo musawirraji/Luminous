@@ -113,11 +113,13 @@ void main() {
 #ifdef NORMALS_TANGENT
   // Rebuild the true displaced normal from two tangent-frame neighbours.
   // This is what lets the fresnel rim respond to the deformation itself;
-  // the low tier trades it for the undisplaced sphere normal.
+  // the low tier trades it for the undisplaced sphere normal. The base h
+  // is deliberately wider than the vertex spacing: sampling at vertex
+  // scale aliases the high octave into faceted, crystalline normals.
   vec3 up = abs(unit.y) > 0.93 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 1.0, 0.0);
   vec3 tangent = normalize(cross(up, unit));
   vec3 bitangent = cross(unit, tangent);
-  float h = 0.05;
+  float h = 0.11;
   vec3 pT = displacedPoint(normalize(unit + tangent * h), uTime);
   vec3 pB = displacedPoint(normalize(unit + bitangent * h), uTime);
   vec3 n = normalize(cross(pT - pos, pB - pos));
