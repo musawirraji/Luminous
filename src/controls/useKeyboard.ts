@@ -39,11 +39,14 @@ export function useKeyboard(toggleDiagnostics: () => void): void {
         machine.request(state, performance.now());
         return;
       }
+      // match code as well as key: some environments deliver space as a
+      // key name rather than the literal " "
+      if (e.code === "Space" || e.key === " ") {
+        e.preventDefault();
+        machine.request(advanceSequence(), performance.now());
+        return;
+      }
       switch (e.key) {
-        case " ":
-          e.preventDefault();
-          machine.request(advanceSequence(), performance.now());
-          break;
         case "d":
         case "D":
           toggleDiagnostics();
