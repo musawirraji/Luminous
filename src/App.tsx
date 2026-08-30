@@ -3,6 +3,7 @@ import { Color } from "three";
 
 import { PALETTE } from "./palette";
 import { CAMERA_FOV, CAMERA_Z } from "./render/composition";
+import { Entity } from "./render/Entity";
 import { Ground } from "./render/Ground";
 import { QUALITY } from "./render/quality";
 
@@ -20,6 +21,7 @@ export function App() {
       onCreated={({ gl }) => gl.setClearColor(new Color(PALETTE.ground))}
     >
       <Ground />
+      <Entity />
     </Canvas>
   );
 }
