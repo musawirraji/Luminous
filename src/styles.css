@@ -1,6 +1,6 @@
-/* Ground colour is duplicated from palette.ts (#040703) because CSS cannot
-   import it; the acceptance check greps for hexes and expects both to match
-   the sampled value. */
+/* The three hexes here are duplicated from palette.ts because CSS cannot
+   import it: the ground #040703, and the diagnostics text in the sampled
+   glow #297217 and white-out #acffc3. No other colours exist in CSS. */
 
 * {
   margin: 0;
