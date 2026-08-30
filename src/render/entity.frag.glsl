@@ -76,7 +76,9 @@ void main() {
 
   // The accent's one job: DORMANT light is olive/moss (#324816), a
   // different kind of light from the waking phosphor - not just dimmer.
-  col = mix(col, uColAccent * (0.25 + 1.9 * e), uAccentMix);
+  // Proportional to energy (no floor) so the ember dies at the limb and
+  // the sphere never reads as a lit disc while asleep.
+  col = mix(col, uColAccent * (2.6 * e), uAccentMix);
 
   // Dissolve: noise-threshold skin erosion for the return-to-dormant.
   // The band just above the threshold brightens: edges that are letting
