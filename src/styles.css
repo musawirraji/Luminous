@@ -1,0 +1,48 @@
+/* Ground colour is duplicated from palette.ts (#040703) because CSS cannot
+   import it; the acceptance check greps for hexes and expects both to match
+   the sampled value. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+  background: #040703;
+}
+
+canvas {
+  display: block;
+}
+
+/* Diagnostics: the only type in the piece. Space Mono, set with intent. */
+.diagnostics {
+  position: fixed;
+  left: 20px;
+  bottom: 18px;
+  font-family: "Space Mono", monospace;
+  line-height: 1.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+.diagnostics dt {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #297217;
+  float: left;
+  clear: left;
+  width: 6.5em;
+}
+
+.diagnostics dd {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #acffc3;
+}
