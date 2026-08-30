@@ -57,15 +57,15 @@ void main() {
   ridge *= ridge;
 
   float fresnel = pow(1.0 - ndv, 3.0);
-  float facing = pow(ndv, 1.6);
+  float facing = pow(ndv, 1.2);
 
   // Two lighting postures crossfaded by uCoreBias: surface posture (rim +
   // lit ridges - attention pointed outward) against core posture (glow
   // through the facing axis - light that has withdrawn inside). THINKING
   // is the crossfade, not a speed change.
-  float surfaceE = fresnel * uRim * 2.6 + ridge * 1.05;
+  float surfaceE = fresnel * uRim * 2.2 + ridge * 1.05;
   float coreE = facing * (0.5 + 1.1 * ridge);
-  float energy = uEmission * 1.5 * mix(surfaceE + 0.35 * coreE, 1.35 * coreE + 0.15 * fresnel, uCoreBias);
+  float energy = uEmission * 1.5 * mix(surfaceE + 0.5 * coreE, 1.35 * coreE + 0.15 * fresnel, uCoreBias);
 
   // Bloom's halo, approximated in-shader when bloom is off (low tier):
   // a wider, weaker rim lobe.

@@ -25,6 +25,10 @@ canvas {
   position: fixed;
   left: 20px;
   bottom: 18px;
+  display: grid;
+  grid-template-columns: 7em auto;
+  column-gap: 1em;
+  align-items: baseline;
   font-family: "Space Mono", monospace;
   line-height: 1.7;
   user-select: none;
@@ -36,13 +40,11 @@ canvas {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #297217;
-  float: left;
-  clear: left;
-  width: 6.5em;
 }
 
 .diagnostics dd {
   font-size: 12px;
   letter-spacing: 0.02em;
   color: #acffc3;
+  white-space: nowrap;
 }

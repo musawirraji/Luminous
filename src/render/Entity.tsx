@@ -79,7 +79,10 @@ export function Entity() {
     diag.fps = mean > 0 ? 1000 / mean : 0;
     diag.p95Ms = sorted[Math.floor(sorted.length * 0.95)] ?? 0;
     diag.amp = f.amp;
+    // autoReset is off (App onCreated): at this point info holds the whole
+    // previous frame including the composer's internal passes.
     diag.drawCalls = gl.info.render.calls;
+    gl.info.reset();
     diag.tier = QUALITY.tier;
   });
 

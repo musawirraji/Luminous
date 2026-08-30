@@ -8,6 +8,7 @@ import { PALETTE } from "./palette";
 import { CAMERA_FOV, CAMERA_Z } from "./render/composition";
 import { Entity } from "./render/Entity";
 import { Ground } from "./render/Ground";
+import { Post } from "./render/Post";
 import { QUALITY } from "./render/quality";
 import { bus, conductor } from "./runtime";
 
@@ -79,11 +80,16 @@ export function App() {
           powerPreference: "high-performance",
           preserveDrawingBuffer: true,
         }}
-        onCreated={({ gl }) => gl.setClearColor(new Color(PALETTE.ground))}
+        onCreated={({ gl }) => {
+          gl.setClearColor(new Color(PALETTE.ground));
+          // manual reset in the frame loop so diagnostics sees every pass
+          gl.info.autoReset = false;
+        }}
       >
         <DprSync />
         <Ground />
         <Entity />
+        <Post />
       </Canvas>
       <Diagnostics visible={showDiagnostics} />
     </>
