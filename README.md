@@ -37,7 +37,10 @@ sweep: all 30 ordered state pairs, interrupts included.)
 
 Any state may be requested at any moment, including mid-transition; the
 machine re-aims from the live interpolated values, so mashing keys never
-pops.
+pops. On a cold load a single hint line ("1–6 · space · d") sits at the
+bottom of the frame and the dormant ember breathes slightly lifted; both
+settle permanently on the first keypress — the piece's only concession
+to chrome, because it is delivered as a link.
 
 ## State model
 

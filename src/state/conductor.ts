@@ -70,6 +70,11 @@ export class Conductor {
   private flowTime = 0;
   private breathPhase = 0;
   private reducedMotion = false;
+  /** first-load affordance: lifts the dormant ember until the visitor
+   *  first touches a key, then eases to the authored value. Never part of
+   *  the DORMANT state vector itself. */
+  private arrivalLift = 1;
+  private interacted = false;
 
   constructor(
     private readonly machine: StateMachine,
@@ -78,6 +83,10 @@ export class Conductor {
 
   setReducedMotion(reduced: boolean): void {
     this.reducedMotion = reduced;
+  }
+
+  notifyFirstInteraction(): void {
+    this.interacted = true;
   }
 
   tick(nowMs: number, rawDtSec: number): UniformFrame {
@@ -105,10 +114,19 @@ export class Conductor {
 
     // DORMANT residual presence: a noise-gated ember swell, roughly every
     // 20s, never periodic.
-    const swell =
+    let swell =
       label === "DORMANT"
         ? smoothstep(0.78, 0.86, vnoise(this.time * 0.05 + 17.3))
         : 0;
+
+    // First-load lift: a cold visitor arriving at a DORMANT screen sees
+    // something breathing within the first second. Eases out after the
+    // first keypress; the authored DORMANT values are untouched.
+    if (this.interacted && this.arrivalLift > 0) {
+      this.arrivalLift = Math.max(0, this.arrivalLift - dt / 1.4);
+    }
+    const lift = label === "DORMANT" ? this.arrivalLift : 0;
+    if (lift > 0) breath *= 1 + 1.5 * lift;
 
     // Self-initiated micro-drift on three incommensurate frequencies
     // (0.11 / 0.047 / 0.019 Hz) — attention, not orbit.
@@ -130,7 +148,9 @@ export class Conductor {
     const ampEmission = amp * (this.reducedMotion ? 0.4 : 1) * 0.22;
     const ampDisp = this.reducedMotion ? 0 : amp * 0.09;
 
-    const emission = v.emission * (1 + 0.1 * breath + 0.5 * swell) + ampEmission;
+    const emission =
+      v.emission * (1 + 0.1 * breath + 0.5 * swell) * (1 + 1.4 * lift) +
+      ampEmission;
 
     return {
       time: this.flowTime,
