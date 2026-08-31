@@ -1,9 +1,10 @@
 import { Canvas, useThree } from "@react-three/fiber";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { Color } from "three";
 
 import { Diagnostics } from "./controls/Diagnostics";
-import { useKeyboard } from "./controls/useKeyboard";
+import { Hint } from "./controls/Hint";
+import { getUiState, subscribeUi } from "./controls/keyboard";
 import { PALETTE } from "./palette";
 import { CAMERA_FOV, CAMERA_Z } from "./render/composition";
 import { Entity } from "./render/Entity";
@@ -35,13 +36,7 @@ function DprSync() {
 }
 
 export function App() {
-  const [showDiagnostics, setShowDiagnostics] = useState(false);
-  const toggleDiagnostics = useCallback(
-    () => setShowDiagnostics((v) => !v),
-    [],
-  );
-
-  useKeyboard(toggleDiagnostics);
+  const ui = useSyncExternalStore(subscribeUi, getUiState);
 
   // The evaluator will background the tab: pause the amplitude bus and
   // resume without a jump (the smoother holds its value, sources advance
@@ -91,7 +86,8 @@ export function App() {
         <Entity />
         <Post />
       </Canvas>
-      <Diagnostics visible={showDiagnostics} />
+      <Hint dismissed={ui.hintDismissed} />
+      <Diagnostics visible={ui.diagnosticsVisible} />
     </>
   );
 }

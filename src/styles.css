@@ -48,3 +48,25 @@ canvas {
   color: #acffc3;
   white-space: nowrap;
 }
+
+/* First-run hint: the only chrome in the piece. Palette glow #297217 at
+   low opacity; fades permanently on the first keypress. */
+.hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  text-align: center;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #297217;
+  opacity: 0.6;
+  transition: opacity 1100ms ease-out;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hint-dismissed {
+  opacity: 0;
+}
