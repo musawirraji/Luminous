@@ -62,9 +62,15 @@ void main() {
   // lit ridges - attention pointed outward) against core posture (glow
   // through the facing axis - light that has withdrawn inside). THINKING
   // is the crossfade, not a speed change.
-  float surfaceE = fresnel * uRim * 2.2 + ridge * 0.8;
-  float coreE = facing * (0.5 + 1.1 * ridge);
-  float energy = uEmission * 1.15 * mix(surfaceE + 0.5 * coreE, 1.35 * coreE + 0.15 * fresnel, uCoreBias);
+  float surfaceE = fresnel * uRim * 2.2 + ridge * 1.3;
+  float coreE = facing * (0.45 + 1.2 * ridge);
+  // Interior origin: a facing-axis core gradient present in BOTH postures,
+  // brightest at the centre of the body and fading limb-ward - light
+  // shining out through the medium, not falling onto it. The crossfade
+  // only decides how far that light reaches the skin.
+  float inner = facing * facing * (0.55 + 0.45 * ridge);
+  float energy = uEmission * 0.95 *
+    (mix(surfaceE + 0.5 * coreE, 1.35 * coreE + 0.15 * fresnel, uCoreBias) + 0.75 * inner);
 
   // Bloom's halo, approximated in-shader when bloom is off (low tier):
   // a wider, weaker rim lobe.

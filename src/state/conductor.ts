@@ -127,7 +127,7 @@ export class Conductor {
 
     // Reduced motion drops the SPEAKING displacement flare entirely and
     // softens the emission response; the piece never freezes.
-    const ampEmission = amp * (this.reducedMotion ? 0.4 : 1) * 0.28;
+    const ampEmission = amp * (this.reducedMotion ? 0.4 : 1) * 0.22;
     const ampDisp = this.reducedMotion ? 0 : amp * 0.09;
 
     const emission = v.emission * (1 + 0.1 * breath + 0.5 * swell) + ampEmission;
@@ -148,7 +148,7 @@ export class Conductor {
       driftX,
       driftY,
       amp,
-      groundGlow: 0.02 + 0.16 * emission,
+      groundGlow: 0.02 + 0.24 * emission,
       label,
     };
   }

@@ -27,10 +27,10 @@ export function Post() {
       <Bloom
         key="bloom"
         mipmapBlur
-        intensity={0.5}
+        intensity={0.85}
         levels={QUALITY.bloomLevels}
-        radius={0.7}
-        luminanceThreshold={0.62}
+        radius={0.85}
+        luminanceThreshold={0.58}
         luminanceSmoothing={0.25}
       />,
     );

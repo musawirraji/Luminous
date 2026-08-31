@@ -57,7 +57,7 @@ export const STATES: Record<EntityStateName, StateVector> = {
     breathAmp: 0.15,
   },
   AWAKE: {
-    emission: 0.55,
+    emission: 0.72,
     coreBias: 0.35,
     rim: 0.5,
     dispAmp: 0.12,
@@ -72,7 +72,7 @@ export const STATES: Record<EntityStateName, StateVector> = {
     breathAmp: 0.5,
   },
   LISTENING: {
-    emission: 0.6,
+    emission: 0.8,
     coreBias: 0.3,
     rim: 0.65,
     dispAmp: 0.13,
@@ -102,7 +102,7 @@ export const STATES: Record<EntityStateName, StateVector> = {
     breathAmp: 0.3,
   },
   SPEAKING: {
-    emission: 0.5,
+    emission: 0.78,
     coreBias: 0.45,
     rim: 0.55,
     dispAmp: 0.11,
@@ -232,7 +232,7 @@ export const T1_SEGMENTS: AuthoredSegment[] = [
     to: 0.68,
     ease: "arrive",
     targets: {
-      emission: 0.62,
+      emission: 0.85,
       condense: 1.015,
       dispAmp: 0.14,
       rim: 0.5,
@@ -250,7 +250,7 @@ export const T1_SEGMENTS: AuthoredSegment[] = [
     from: 0.68,
     to: 1,
     ease: "settle",
-    targets: { emission: 0.55, condense: 1.0, dispAmp: 0.12, breathAmp: 0.5 },
+    targets: { emission: 0.72, condense: 1.0, dispAmp: 0.12, breathAmp: 0.5 },
   },
 ];
 

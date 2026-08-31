@@ -6,7 +6,7 @@ No microphone, no AI API, no camera — amplitude is simulated behind a
 clean source interface. A portfolio piece and technical proof: React 19,
 TypeScript (strict), Vite, three.js via React Three Fiber, custom GLSL.
 
-![The entity in LISTENING](docs/media/still-listening.png)
+![The entity at a SPEAKING envelope peak](docs/media/still-speaking-peak.png)
 
 Every colour on screen is a pixel value sampled from a curated reference
 set — bioluminescent fungi, green aurora, Blade Runner 2049's grey-green

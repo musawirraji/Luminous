@@ -113,6 +113,22 @@ measurably cheaper (5.5× fewer vertex noise evaluations, 16× fewer
 vertices, no bloom chain), and the numbers above are the laptop
 baseline for comparison when hardware arrives.
 
+## Luminosity tuning pass (post-review)
+
+The first deployed build read as a matte sphere lit from outside. A
+uniform/post-only pass fixed four things, verified state-by-state at full
+resolution: emission ceilings raised (AWAKE 0.72, LISTENING 0.80,
+SPEAKING 0.78 + 0.22·envelope) so ridge crests genuinely reach the
+sampled highlight `#3ae05b` and white-out `#acffc3`; an interior
+core-glow gradient (facing-axis, present in both lighting postures) so
+light originates inside the body; bloom raised to intensity 0.85 /
+radius 0.85 / threshold 0.58 — pushed until the near-field halo was
+clearly visible, then backed off one notch; and SPEAKING given an energy
+floor just under LISTENING so envelope pauses read as stillness, never
+darker than attention. Verified: a paused SPEAKING frame (envelope 0.04)
+remains fully luminous; the hero still is captured at a measured
+envelope peak of 0.88.
+
 ## Deviations from the planned commit sequence
 
 The 19-step sequence in `02-plan.md` landed as 12 substantive commits;
